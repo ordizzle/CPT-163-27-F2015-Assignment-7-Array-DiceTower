@@ -1,28 +1,37 @@
-package dnddiceroller;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package ordo_dicetower;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Dice Tower.
- * A Dice Tower is a tool used by serious gamers use to roll many dice at once.
- * It looks like this https://www.miniaturescenery.com/Images/PortableDiceTowerLarge.jpg
- * An instance of a dice tower is defined by the number panels it contains to help
- * provide a more regular distribution of die values. The die bounce from panel to
- * panel until they exit the dice tower at the bottom tray.
- * A dice tower will accept a collection of dice and reports their results when
- * they reach the tray at the bottom
- * @author Paul Scarrone
+ *
+ * @author zacharyzordo
  */
 public class DiceTower {
-  final int PANEL_COUNT = 3;
-  List<Die> dice;
+    private List<Die> diceInTheTower;
+    private int sumOfDice;
 
-  public DiceTower() {
-	this.dice = new ArrayList();
-  }
-  
-  public DiceTower(List dice) {
-	this.dice = dice;
-  }
+    public DiceTower(List<Die> diceInTheTower) {
+        this.diceInTheTower = diceInTheTower;
+    }
+    
+    public void whatAreTheDiceValues(){
+        int currentDieValue;
+        sumOfDice = 0;
+        for(Die item : this.diceInTheTower){
+            Die currentDie = item;
+            currentDie.roll();
+            currentDieValue = currentDie.getDieValue();
+            //System.out.println(currentDieValue + "\n");
+            sumOfDice += currentDieValue;
+        }
+    }
+    
+    public int trayValue(){
+        return this.sumOfDice;
+    }
 }

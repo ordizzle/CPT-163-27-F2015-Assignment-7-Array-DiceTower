@@ -1,12 +1,39 @@
-package dnddiceroller;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package ordo_dicetower;
+
+import java.util.Random;
 
 /**
- * A Die is a many sided object that when rolled provides a random value from
- * 1 through the number of sides on the object. Some dice are 6 sided and have
- * the numbers 1-6 on them. Some dice are 20 sided with the numbers 1-20 on them.
- * Others are called fudge dice and have the values of -1 0 or +1
- * @author Paul Scarrone
+ *
+ * @author zacharyzordo
  */
 public class Die {
-  
+    private int dieValue;
+    private int dieSides;
+
+    public Die() { // Default constructor for a die with number of sides assigned by the constructor.
+        this.dieSides = 6;
+        this.dieValue = 0;
+    }
+    
+    public Die(int dieSides) { // Constructor for a die which could have the number of sides assigned in main.
+        // Create a Random class object.
+        this.dieSides = dieSides;
+        this.dieValue = 0;
+    }
+
+    public int getDieValue() {
+        return dieValue;
+    }
+    
+    public void roll() {
+        Random randomNumbers = new Random();
+        this.dieValue = randomNumbers.nextInt(this.dieSides)+1; // Roll the die (add 1 because random int starts at 0).
+    }
+    
+    
 }
